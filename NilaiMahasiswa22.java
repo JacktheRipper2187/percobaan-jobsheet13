@@ -3,24 +3,46 @@ import java.util.Scanner;
 public class NilaiMahasiswa22 {
 
     static Scanner sc = new Scanner(System.in);
-    static String[] mahasiswa = {"Sari", "Rina", "Yani", "Dwi", "Lusi"};
-    static int[][] nilai = new int[5][7];
+    static int jumlahMahasiswa;
+    static int jumlahTugas;
+    static String[] mahasiswa;
+    static int[][] nilai;
 
-    static void inputNilaiMahasiswa() {
-        for (int i = 0; i < 5; i++) {
+    
+    static void inputDataMahasiswa() {
+        System.out.print("Masukkan jumlah mahasiswa: ");
+        jumlahMahasiswa = sc.nextInt();
+        sc.nextLine(); 
+
+        mahasiswa = new String[jumlahMahasiswa];
+        nilai = new int[jumlahMahasiswa][];
+
+        for (int i = 0; i < jumlahMahasiswa; i++) {
+            System.out.print("Masukkan nama mahasiswa ke-" + (i + 1) + ": ");
+            mahasiswa[i] = sc.nextLine();
+        }
+
+        System.out.print("Masukkan jumlah tugas: ");
+        jumlahTugas = sc.nextInt();
+        sc.nextLine(); 
+
+        for (int i = 0; i < jumlahMahasiswa; i++) {
+            nilai[i] = new int[jumlahTugas];
             System.out.println("Masukkan nilai untuk " + mahasiswa[i]);
-            for (int j = 0; j < 7; j++) {
-                System.out.print("Minggu ke-" + (j + 1) + ": ");
+            for (int j = 0; j < jumlahTugas; j++) {
+                System.out.print("Nilai tugas " + (j + 1) + ": ");
                 nilai[i][j] = sc.nextInt();
             }
+            sc.nextLine(); 
         }
     }
 
+
     static void tampilkanNilaiMahasiswa() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < jumlahMahasiswa; i++) {
             System.out.println("Nilai " + mahasiswa[i] + ": ");
-            for (int j = 0; j < 7; j++) {
-                System.out.println("Minggu ke-" + (j + 1) + ": " + nilai[i][j]);
+            for (int j = 0; j < jumlahTugas; j++) {
+                System.out.println("Tugas " + (j + 1) + ": " + nilai[i][j]);
             }
             System.out.println();
         }
@@ -90,7 +112,7 @@ public class NilaiMahasiswa22 {
     }
 
     public static void main(String[] args) {
-        inputNilaiMahasiswa();
+        inputDataMahasiswa();
         tampilkanNilaiMahasiswa();
         hariDenganNilaiTertinggi();
         mahasiswaDenganNilaiTertinggi();
